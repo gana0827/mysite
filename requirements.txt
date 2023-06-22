@@ -19,7 +19,7 @@ libffi
 mkl
 mkl-service
 mkl_fft
-mkl_random=
+mkl_random
 numexpr
 numpy
 numpy-base
