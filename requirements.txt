@@ -9,7 +9,6 @@ cffi==1.15.1
 charset-normalizer==2.0.4
 cryptography==39.0.1
 django==4.1
-idna==3.4s
 intel-openmp
 libffi==3.4.4
 mkl==2023.1.0
