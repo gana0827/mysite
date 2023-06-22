@@ -37,11 +37,11 @@ requests
 setuptools
 six
 soupsieve
-sqlite=
+sqlite
 sqlparse
 tbb
 tk
-tzdata=
+tzdata
 urllib3
 vc
 vs2015_runtime
