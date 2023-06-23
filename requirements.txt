@@ -9,5 +9,5 @@ pyopenssl==23.0.0
 pysocks==1.7.1
 requests==2.29.0
 soupsieve==2.4
-sqlite==3.41.2
+sqlite
 sqlparse==0.4.3
