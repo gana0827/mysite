@@ -85,11 +85,15 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
     
     #カテゴリーの詳細画面のpostの場合に処理する
     def post(self, request, *args, **kwargs):
+        
+        headers = {
+            'User-Agent':'Mozilla/5.0'
+        }
     
         #IDからカテゴリーのURLを取得
         id = request.POST["id"]
         url = Categories.objects.values_list('url', flat=True).get(pk=id)
-        res = requests.get(str(url)) 
+        res = requests.get(str(url), headers=headers) 
         soup = BeautifulSoup(res.text, 'html.parser')
         soups = soup.find_all('div', attrs={'class':'rnkRanking_upperbox'} )
         data = []
