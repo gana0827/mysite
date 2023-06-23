@@ -7,7 +7,7 @@ pipreqs==0.4.13
 pycparser==2.21
 pyopenssl==23.0.0
 pysocks==1.7.1
-python==3.10.11
+python==3.10
 requests==2.29.0
 soupsieve==2.4
 sqlite==3.41.2
