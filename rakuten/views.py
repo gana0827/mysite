@@ -86,8 +86,7 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
     #カテゴリーの詳細画面のpostの場合に処理する
     def post(self, request, *args, **kwargs):
         
-        headers = {
-            'User-Agent':'Mozilla/5.0',
+        proxies_dic = {
             "http": "http://proxy.example.co.jp:8080",
             "https": "http://proxy.example.co.jp:8080",
         }
@@ -95,7 +94,7 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
         #IDからカテゴリーのURLを取得
         id = request.POST["id"]
         url = Categories.objects.values_list('url', flat=True).get(pk=id)
-        res = requests.get(str(url), headers=headers) 
+        res = requests.get(str(url), proxies=proxies_dic) 
         soup = BeautifulSoup(res.text, 'html.parser')
         soups = soup.find_all('div', attrs={'class':'rnkRanking_upperbox'} )
         data = []
