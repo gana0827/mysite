@@ -16,6 +16,8 @@ from .models import Categories, Products
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import json
+import random
 
 #homeのテンプレート
 class home_templateView(LoginRequiredMixin, TemplateView):
@@ -85,16 +87,11 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
     
     #カテゴリーの詳細画面のpostの場合に処理する
     def post(self, request, *args, **kwargs):
-        
-        proxies_dic = {
-            "http": "http://proxy.example.co.jp:8080",
-            "https": "http://proxy.example.co.jp:8080",
-        }
-    
+
         #IDからカテゴリーのURLを取得
         id = request.POST["id"]
         url = Categories.objects.values_list('url', flat=True).get(pk=id)
-        res = requests.get(str(url), proxies=proxies_dic) 
+        res = requests.get(str(url))
         soup = BeautifulSoup(res.text, 'html.parser')
         soups = soup.find_all('div', attrs={'class':'rnkRanking_upperbox'} )
         data = []
