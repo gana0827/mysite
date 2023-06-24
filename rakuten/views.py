@@ -87,7 +87,9 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
     def post(self, request, *args, **kwargs):
         
         headers = {
-            'User-Agent':'Mozilla/5.0'
+            'User-Agent':'Mozilla/5.0',
+            "http": "http://proxy.example.co.jp:8080",
+            "https": "http://proxy.example.co.jp:8080",
         }
     
         #IDからカテゴリーのURLを取得
