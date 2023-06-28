@@ -16,14 +16,23 @@
 </head>
 
 <body>
-
 {% block content %}
+<div class="genre">
+    <p style="padding-left: 100px;">※リンク先のイメージです。</p>
+    <img src="/media/genre.png" style="padding-left: 100px;" border="0" />
+</div>
+
 <div class="category">
+    
    <link href="{% static 'css/style_category_form.css' %}" rel="stylesheet">
     <div style="category-triangle"></div>
     <h1 class="category-header">カテゴリー登録</h1>
-
+    
 <table>
+<li>「https://ranking.rakuten.co.jp/daily/○○○○○○/」形式のURLをコピーしてください。</li>
+<li>例: 洗濯機の場合は「https://ranking.rakuten.co.jp/daily/204491/」</li>
+<li>下記リンクをクリック後、カテゴリーを選択してください。</li>
+<li>カテゴリーURLは<a href="https://ranking.rakuten.co.jp/daily/" target="_blank" rel="noopener noreferrer">ここをクリック</a></li>
 {% if request.user.is_authenticated %}
         {% if user == request.user %}
             <form method="POST">{% csrf_token %}               
@@ -33,8 +42,8 @@
         {% endif %}
 {% endif %}
 </table>
-
 </div>
+
 
 </body>
 {% endblock %}

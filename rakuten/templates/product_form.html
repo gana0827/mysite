@@ -22,7 +22,6 @@
     <h1 class="product-header">商品登録</h1>
 
 <table>
-
 {% if request.user.is_authenticated %}
     {% if user == request.user %}        
         <form method="POST">{% csrf_token %}

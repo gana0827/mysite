@@ -49,6 +49,18 @@ class ProductModelForm(forms.ModelForm):
         model = Products
         #フィールドはすべて
         fields = ('name', 'url', 'store', 'price', 'price_fluctuation', 'category')
+    
+    #ユーザー事のカテゴリーをformに表示するために初期化
+    def __init__(self, *args, **kwargs):
+        
+            # ユーザーを取得
+            user = kwargs.pop('user', None)  
+            super().__init__(*args, **kwargs)
+            
+            # ユーザーごとの処理を追加
+            if user:
+                # ユーザーに紐づくカテゴリーのみを改めて「category」フィールドに追加
+                self.fields['category'].queryset = Categories.objects.filter(user=user)
         
 #カテゴリーを更新するモデルフォーム
 class CategoryUpdateForm(forms.ModelForm):

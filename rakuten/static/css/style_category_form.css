@@ -26,6 +26,22 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.genre {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+img.example1 {
+  width: 96px;
+  height: 65px;
+  }
+
+.genre {
+    float:  left;   /* 回り込み指定 */
+}
+
+
 .category {
   width: 400px;
   margin: 16px auto;

@@ -16,8 +16,6 @@ from .models import Categories, Products
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import json
-import random
 
 #homeのテンプレート
 class home_templateView(LoginRequiredMixin, TemplateView):
@@ -65,7 +63,7 @@ class ProductFormView(LoginRequiredMixin, FormView):
     form_class = forms.ProductModelForm
     success_url = reverse_lazy('rakuten:product_list')
     
-    #商品情報の新規登録
+    #商品情報の新規登録(DBに登録)
     def form_valid(self, form):
         if form.is_valid():
             
@@ -73,6 +71,13 @@ class ProductFormView(LoginRequiredMixin, FormView):
             form.instance.user_id = self.request.user.id # type: ignore
             form.save()  # type: ignore
         return super(ProductFormView, self).form_valid(form) # type: ignore
+    
+    #ユーザー事のカテゴリーを用事する(forms.pyに渡す)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        #ユーザー情報を渡す
+        kwargs['user'] = self.request.user
+        return kwargs
     
 #登録したカテゴリーを表示
 class CategoryListView(LoginRequiredMixin, ListView):
