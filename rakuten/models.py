@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 
 from django.contrib.auth.models import (
@@ -15,6 +16,19 @@ class UserManager(BaseUserManager):
             email=email
         )
         user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    #管理者でログインできるようにする
+    def create_superuser(self, username, email, password=None):
+        user = self.model(
+            username=username,
+            email=email,
+        )
+        user.set_password(password)
+        user.is_staff = True
+        user.is_active = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
     
@@ -37,7 +51,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     
     #管理画面にログインできる
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
